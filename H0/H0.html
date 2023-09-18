@@ -1,0 +1,512 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>H0</title>
+<meta name="generator" content="MATLAB 23.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2023-09-17">
+<meta name="DC.source" content="H0.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<p>1. Genera una matriu A de 10x10 amb valors aleatoris entre 0 i 255 de tipus enter</p>
+<pre class="codeinput">A = randi([0, 255], 10)
+</pre>
+<pre class="codeoutput">
+A =
+
+   161    47    57   160    70   253    35   242   105    90
+    90   185    95     5    63    17    55   173   154   248
+   255    94    22   233   115   240    46   253   192    88
+    57   215   163   204    58     4    10   196   149   226
+   167   187    46   190   205   175    27    86   141   116
+   154   146    11   208   252   200   157   169   149   105
+    99    45   185    98     7   136   240    62   131    55
+    36   245    88   158   137   226    90    75    21    32
+     6    67   169   147    22   230   105   174   184    79
+   107   236    98   135   205   160   251   135   255   185
+
+</pre>
+<p>2. Obt&eacute; un vector amb la 4&ordf; fila de A</p>
+<pre class="codeinput">A1 = A(4,:)
+</pre>
+<pre class="codeoutput">
+A1 =
+
+    57   215   163   204    58     4    10   196   149   226
+
+</pre>
+<p>3. Obt&eacute; un vector amb la 4&ordf; columna de A</p>
+<pre class="codeinput">A2 = A(:,4)
+</pre>
+<pre class="codeoutput">
+A2 =
+
+   160
+     5
+   233
+   204
+   190
+   208
+    98
+   158
+   147
+   135
+
+</pre>
+<p>4. Obt&eacute; una matriu on s'hagi suprimit la 4&ordf; columna de A</p>
+<pre class="codeinput">
+<span class="comment">% Alternativa 1</span>
+A3 = A(:, [1:3, 5:end])
+</pre>
+<pre class="codeoutput">
+A3 =
+
+   161    47    57    70   253    35   242   105    90
+    90   185    95    63    17    55   173   154   248
+   255    94    22   115   240    46   253   192    88
+    57   215   163    58     4    10   196   149   226
+   167   187    46   205   175    27    86   141   116
+   154   146    11   252   200   157   169   149   105
+    99    45   185     7   136   240    62   131    55
+    36   245    88   137   226    90    75    21    32
+     6    67   169    22   230   105   174   184    79
+   107   236    98   205   160   251   135   255   185
+
+</pre>
+<pre class="codeinput">
+<span class="comment">% Alternativa 2</span>
+A3 = A;
+A3(:,4) = []
+</pre>
+<pre class="codeoutput">
+A3 =
+
+   161    47    57    70   253    35   242   105    90
+    90   185    95    63    17    55   173   154   248
+   255    94    22   115   240    46   253   192    88
+    57   215   163    58     4    10   196   149   226
+   167   187    46   205   175    27    86   141   116
+   154   146    11   252   200   157   169   149   105
+    99    45   185     7   136   240    62   131    55
+    36   245    88   137   226    90    75    21    32
+     6    67   169    22   230   105   174   184    79
+   107   236    98   205   160   251   135   255   185
+
+</pre>
+<p>5. Obt&eacute; un vector amb el valor m&agrave;xim de cada columna de A</p>
+<pre class="codeinput">maxColA = max(A)
+</pre>
+<pre class="codeoutput">
+maxColA =
+
+   255   245   185   233   252   253   251   253   255   248
+
+</pre>
+<p>6. Obt&eacute; el valor m&agrave;xim de la matriu A</p>
+<pre class="codeinput">
+<span class="comment">% Alternativa 1</span>
+maxA = max(A(:))
+</pre>
+<pre class="codeoutput">
+maxA =
+
+   255
+
+</pre>
+<pre class="codeinput">
+<span class="comment">% Alternativa 2</span>
+maxA = max(maxColA)
+</pre>
+<pre class="codeoutput">
+maxA =
+
+   255
+
+</pre>
+<p>7. Obt&eacute; una matriu amb nom&eacute;s les files parells de A</p>
+<pre class="codeinput">parellA = A((2:2:end),:)
+</pre>
+<pre class="codeoutput">
+parellA =
+
+    90   185    95     5    63    17    55   173   154   248
+    57   215   163   204    58     4    10   196   149   226
+   154   146    11   208   252   200   157   169   149   105
+    36   245    88   158   137   226    90    75    21    32
+   107   236    98   135   205   160   251   135   255   185
+
+</pre>
+<p>8. Obt&eacute; la fila i columna on es troba el valor m&iacute;nim de A</p>
+<pre class="codeinput">minValue = min(A(:));
+[row, col] = find(A == minValue)
+</pre>
+<pre class="codeoutput">
+row =
+
+     4
+
+
+col =
+
+     6
+
+</pre>
+<p>9. Genera la matriu B trasposant la matriu A</p>
+<pre class="codeinput">B = A'
+</pre>
+<pre class="codeoutput">
+B =
+
+   161    90   255    57   167   154    99    36     6   107
+    47   185    94   215   187   146    45   245    67   236
+    57    95    22   163    46    11   185    88   169    98
+   160     5   233   204   190   208    98   158   147   135
+    70    63   115    58   205   252     7   137    22   205
+   253    17   240     4   175   200   136   226   230   160
+    35    55    46    10    27   157   240    90   105   251
+   242   173   253   196    86   169    62    75   174   135
+   105   154   192   149   141   149   131    21   184   255
+    90   248    88   226   116   105    55    32    79   185
+
+</pre>
+<p>10. Obt&eacute; el producte de les matrius A i B</p>
+<pre class="codeinput">C = A*B
+</pre>
+<pre class="codeoutput">
+C =
+
+  Columns 1 through 6
+
+      204802      120392      243693      150052      174325      205291
+      120392      173807      152611      178584      137680      149089
+      243693      152611      310192      192037      231300      266507
+      150052      178584      192037      232832      172923      180434
+      174325      137680      231300      172923      215186      231668
+      205291      149089      266507      180434      231668      278357
+      121286       95793      146542      112916      113976      146651
+      140760       99283      170918      136114      169083      188164
+      169211      118826      194659      154902      146902      176287
+      195215      201220      255996      221658      237986      283394
+
+  Columns 7 through 10
+
+      121286      140760      169211      195215
+       95793       99283      118826      201220
+      146542      170918      194659      255996
+      112916      136114      154902      221658
+      113976      169083      146902      237986
+      146651      188164      176287      283394
+      155830      108809      145151      187958
+      108809      179064      138615      199861
+      145151      138615      189477      205551
+      187958      199861      205551      343075
+
+</pre>
+<p>11. Obt&eacute; el producte element a element de A i B</p>
+<pre class="codeinput">D = A.*B
+</pre>
+<pre class="codeoutput">
+D =
+
+  Columns 1 through 6
+
+       25921        4230       14535        9120       11690       38962
+        4230       34225        8930        1075       11781        2482
+       14535        8930         484       37979        5290        2640
+        9120        1075       37979       41616       11020         832
+       11690       11781        5290       11020       42025       44100
+       38962        2482        2640         832       44100       40000
+        3465        2475        8510         980         189       21352
+        8712       42385       22264       30968       11782       38194
+         630       10318       32448       21903        3102       34270
+        9630       58528        8624       30510       23780       16800
+
+  Columns 7 through 10
+
+        3465        8712         630        9630
+        2475       42385       10318       58528
+        8510       22264       32448        8624
+         980       30968       21903       30510
+         189       11782        3102       23780
+       21352       38194       34270       16800
+       57600        5580       13755       13805
+        5580        5625        3654        4320
+       13755        3654       33856       20145
+       13805        4320       20145       34225
+
+</pre>
+<p>12. Genera una matriu booleana on cada element (i,j) valgui 1 si A(i,j) &gt; B(i,j), i 0 en cas contrari</p>
+<pre class="codeinput">boolAB = A &gt; B
+</pre>
+<pre class="codeoutput">
+boolAB =
+
+  10x10 logical array
+
+   0   0   0   1   0   1   0   1   1   0
+   1   0   1   0   0   0   1   0   1   1
+   1   0   0   1   1   1   0   1   1   0
+   0   1   0   0   0   0   0   1   1   1
+   1   1   0   1   0   0   1   0   1   0
+   0   1   0   1   1   0   1   0   0   0
+   1   0   1   1   0   0   0   0   1   0
+   0   1   0   0   1   1   1   0   0   0
+   0   0   0   0   0   1   0   1   0   0
+   1   0   1   0   1   1   1   1   1   0
+
+</pre>
+<p>13. Genera un vector amb tots els elements A(i,j) m&eacute;s grans que B(i,j)</p>
+<pre class="codeinput">
+<span class="comment">% Alternativa 1</span>
+vector_nums_mes_grans = [];
+
+vector_nums_mes_grans = A(A &gt; B);
+
+vector_nums_mes_grans'
+</pre>
+<pre class="codeoutput">
+ans =
+
+  Columns 1 through 13
+
+    90   255   167    99   107   215   187   146   245    95   185    98   160
+
+  Columns 14 through 26
+
+   233   190   208    98   115   252   137   205   253   240   226   230   160
+
+  Columns 27 through 39
+
+    55    27   157    90   251   242   253   196   174   135   105   154   192
+
+  Columns 40 through 45
+
+   149   141   131   255   248   226
+
+</pre>
+<pre class="codeinput">
+<span class="comment">% Alternativa 2</span>
+x = 1;
+<span class="keyword">for</span> i=1:size(A,1)
+    <span class="keyword">for</span> j=1:size(A,2)
+        <span class="keyword">if</span> A(i,j) &gt; B(i,j)
+            aux(x) = A(i,j);
+            x = x + 1;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+aux
+</pre>
+<pre class="codeoutput">
+aux =
+
+  Columns 1 through 13
+
+   160   253   242   105    90    95    55   154   248   255   233   115   240
+
+  Columns 14 through 26
+
+   253   192   215   196   149   226   167   187   190    27   141   146   208
+
+  Columns 27 through 39
+
+   252   157    99   185    98   131   245   137   226    90   230   174   107
+
+  Columns 40 through 45
+
+    98   205   160   251   135   255
+
+</pre>
+<p>14. Genera una matriu on cada element (i,j) valgui A(i,j) si A(i,j)&gt;B(i,j) , i 0 en cas contrari</p>
+<pre class="codeinput">
+<span class="keyword">for</span> i=1:size(A,1)
+    <span class="keyword">for</span> j=1:size(A,2)
+        <span class="keyword">if</span> A(i,j) &gt; B(i,j)
+            aux2(i,j) = A(i,j);
+        <span class="keyword">else</span>
+            aux2(i,j) = 0;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+aux2
+</pre>
+<pre class="codeoutput">
+aux2 =
+
+     0     0     0   160     0   253     0   242   105     0
+    90     0    95     0     0     0    55     0   154   248
+   255     0     0   233   115   240     0   253   192     0
+     0   215     0     0     0     0     0   196   149   226
+   167   187     0   190     0     0    27     0   141     0
+     0   146     0   208   252     0   157     0     0     0
+    99     0   185    98     0     0     0     0   131     0
+     0   245     0     0   137   226    90     0     0     0
+     0     0     0     0     0   230     0   174     0     0
+   107     0    98     0   205   160   251   135   255     0
+
+</pre>
+<p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+%% 
+% 1. Genera una matriu A de 10x10 amb valors aleatoris entre 0 i 255 de tipus enter
+
+A = randi([0, 255], 10)
+%% 
+% 2. Obté un vector amb la 4ª fila de A
+A1 = A(4,:)
+%% 
+% 3. Obté un vector amb la 4ª columna de A
+A2 = A(:,4)
+%% 
+% 4. Obté una matriu on s'hagi suprimit la 4ª columna de A
+
+% Alternativa 1
+A3 = A(:, [1:3, 5:end])
+%% 
+
+% Alternativa 2
+A3 = A;
+A3(:,4) = []
+%% 
+% 5. Obté un vector amb el valor màxim de cada columna de A
+maxColA = max(A)
+%% 
+% 6. Obté el valor màxim de la matriu A
+
+% Alternativa 1
+maxA = max(A(:))
+%% 
+
+% Alternativa 2
+maxA = max(maxColA)
+%% 
+% 7. Obté una matriu amb només les files parells de A
+parellA = A((2:2:end),:)
+%% 
+% 8. Obté la fila i columna on es troba el valor mínim de A
+minValue = min(A(:));
+[row, col] = find(A == minValue)
+%% 
+% 9. Genera la matriu B trasposant la matriu A
+B = A'
+%% 
+% 10. Obté el producte de les matrius A i B
+C = A*B
+%% 
+% 11. Obté el producte element a element de A i B
+D = A.*B
+%% 
+% 12. Genera una matriu booleana on cada element (i,j) valgui 1 si A(i,j) > B(i,j), i 0 en cas contrari
+boolAB = A > B
+%% 
+% 13. Genera un vector amb tots els elements A(i,j) més grans que B(i,j)
+
+% Alternativa 1
+vector_nums_mes_grans = [];
+
+vector_nums_mes_grans = A(A > B);
+
+vector_nums_mes_grans'
+%% 
+
+% Alternativa 2
+x = 1;
+for i=1:size(A,1)
+    for j=1:size(A,2)
+        if A(i,j) > B(i,j)
+            aux(x) = A(i,j);
+            x = x + 1;
+        end
+    end
+end
+aux
+%% 
+% 14. Genera una matriu on cada element (i,j) valgui A(i,j) si A(i,j)>B(i,j) , i 0 en cas contrari
+for i=1:size(A,1)
+    for j=1:size(A,2)
+        if A(i,j) > B(i,j)
+            aux2(i,j) = A(i,j);
+        else
+            aux2(i,j) = 0;
+        end
+    end
+end
+aux2
+##### SOURCE END #####
+-->
+</body>
+</html>
